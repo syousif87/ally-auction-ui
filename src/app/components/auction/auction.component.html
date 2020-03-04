@@ -1,0 +1,7 @@
+<div>Welcome {{bidderName}}</div>
+
+<button mat-raised-button color="primary" (click)="getAuctions()">test</button>
+
+<div *ngFor="let auction of auctions">
+  {{ getString(auction) }}
+</div>

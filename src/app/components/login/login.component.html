@@ -1,0 +1,8 @@
+<mat-form-field>
+  <mat-label>Bidder</mat-label>
+  <input matInput
+    name="bidderName"
+    [(ngModel)]="bidderName"
+    required>
+  </mat-form-field>
+<button [disabled]="bidderName.length === 0" mat-raised-button color="primary" (click)="login()">Login</button>

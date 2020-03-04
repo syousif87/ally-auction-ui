@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuctionService } from 'src/app/services/auction.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { AuctionItemModel } from 'src/app/models/auction-item.model';
 
 @Component({
   selector: 'app-auction',
@@ -10,7 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./auction.component.sass']
 })
 export class AuctionComponent implements OnInit {
-  auctions: Array<any> = [];
+  auctions: Array<AuctionItemModel> = [];
+  selectedAuction: AuctionItemModel = undefined;
 
   get bidderName(): string {
     return this.authService.bidderName || '';
@@ -23,17 +25,15 @@ export class AuctionComponent implements OnInit {
   ngOnInit(): void {
     if (!this.authService.bidderName || this.authService.bidderName === '') {
       this.router.navigate(['']);
+    } else {
+      this.auctionService.getAllAuctions().subscribe( res => {
+        this.auctions = res;
+      });
     }
   }
 
-  public getAuctions() {
-    this.auctionService.getAllAuctions().subscribe( res => {
-      this.auctions = res;
-    });
-  }
-
-  public getString(auction: any) {
-    return JSON.stringify(auction);
+  public auctionClicked(auction: AuctionItemModel) {
+    this.selectedAuction = auction;
   }
 
 }

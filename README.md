@@ -5,7 +5,7 @@
 ### Technologies
 * [Angular](https://angular.io/)
 * [TypeScript](https://www.typescriptlang.org/)
-### Front End
+### Server/API
 * [Ally Auction Springboot Server](https://github.com/syousif87/ally-auction-server)
 
 ## TO RUN

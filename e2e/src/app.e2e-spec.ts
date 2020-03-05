@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('ally-auction-ui app is running!');
+    expect(page.getTitleText()).toEqual('Ally Auction Demo');
   });
 
   afterEach(async () => {

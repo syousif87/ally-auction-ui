@@ -18,9 +18,18 @@ export class AuctionDetailsComponent implements OnInit, OnChanges {
 
   public bidPrice: number = 0;
   public auction: AuctionItemModel;
+  public isCurrentBidder: boolean = false;
 
-  get isCurrentBidder(): boolean {
-    return this.auction.bidderName === this.authService.bidderName;
+  get bidderName(): string {
+    return this.auction.bidderName;
+  }
+
+  get currentBid(): number {
+    return this.auction.currentBid;
+  }
+
+  get reservePrice(): number {
+    return this.auction.reservePrice;
   }
 
   constructor(private authService: AuthService,
@@ -28,28 +37,31 @@ export class AuctionDetailsComponent implements OnInit, OnChanges {
               private dataService: AuctionDataService) { }
 
   ngOnInit(): void {
-    if (this.auctionId) {
-      this.auction = this.dataService.get(this.auctionId);
-    }
+    this.reset();
   }
 
   ngOnChanges(): void {
-    if (this.auctionId) {
-      this.auction = this.dataService.get(this.auctionId);
-    }
+    this.reset();
   }
 
-  public getString(auction: AuctionItemModel): string {
-    return JSON.stringify(auction);
+  private reset(): void {
+    if (this.auctionId) {
+      this.auction = this.dataService.get(this.auctionId);
+      this.isCurrentBidder = this.auction && (this.auction.bidderName === this.authService.bidderName);
+      this.bidPrice = 0;
+    }
   }
 
   public bid() {
     var bid = new BidModel(this.auction.auctionItemId, this.bidPrice, this.authService.bidderName);
     this.auctionService.bid(bid).subscribe((auctionItem: AuctionItemModel) => {
       this.auction = auctionItem;
+      this.isCurrentBidder = true;
     }, (errResp: HttpErrorResponse) => {
       errResp && errResp.error ? alert(errResp.error.message) : alert('Error processing bid.');
       this.error.next(true);
+      this.bidPrice = 0;
+      this.auctionService.getAuction(this.auctionId).subscribe( resp => this.auction = resp);
     });
   }
 }

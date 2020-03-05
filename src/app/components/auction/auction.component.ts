@@ -75,6 +75,10 @@ export class AuctionComponent implements OnInit {
     })
   }
 
+  public goToLog() {
+    this.router.navigate(['bid-log']);
+  }
+
   public error(reset) {
     if (reset) {
       this.reset();

@@ -13,13 +13,15 @@ import { AuctionComponent } from './components/auction/auction.component';
 import { AuthService } from './services/auth.service';
 import { AuctionDetailsComponent } from './components/auction/auction-details/auction-details.component';
 import { AuctionDataService } from './services/auction-data.service';
+import { BidLogsComponent } from './components/bid-logs/bid-logs.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     AuctionComponent,
-    AuctionDetailsComponent
+    AuctionDetailsComponent,
+    BidLogsComponent
   ],
   imports: [
     BrowserModule,

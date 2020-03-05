@@ -32,19 +32,41 @@ export class AuctionService {
       );
   }
 
-  public postAuction(auction: AuctionItemModel) {
+  public getAuction(id: string): Observable<any>  {
+    var url = environment.apiUrl + 'auctionItems/' + id;
+
+    return this.httpClient.get(url).pipe(map((res: any) => new AuctionItemModel(res)));
+  }
+
+  public postAuction(auction: AuctionItemModel): Observable<any> {
     var url = environment.apiUrl + 'auctionItems';
 
     return this.httpClient.post(url, auction).pipe(map((res: any) => res));
   }
 
-  public bid(bid: BidModel) {
+  public getAllBids(): Observable<any>  {
+    var url = environment.apiUrl + 'bids';
+
+    return this.httpClient.get(url)
+      .pipe(
+        map((res: any) => {
+          var bids: Array<BidModel> = [];
+
+          if (res && res.length > 0) {
+            res.forEach(item => {
+              bids.push(new BidModel(item['auctionItemId'], item['maxAutoBidAmount'], item['bidderName']));
+            });
+          }
+
+          return bids;
+        })
+      );
+  }
+
+  public bid(bid: BidModel): Observable<any> {
     var url = environment.apiUrl + 'bids';
 
     return this.httpClient.post(url, bid).pipe(map((res: any) => res));
   }
 
-  handleError(error: any) {
-    return Observable.throw(error);
-  }
 }

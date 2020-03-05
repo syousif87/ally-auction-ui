@@ -1,4 +1,32 @@
-# AllyAuctionUi
+# Ally Auction Programming Challenge
+### Prerequisites
+* [Node](https://nodejs.org/en/)
+* [Angular CLI](https://cli.angular.io/)
+### Technologies
+* [Angular](https://angular.io/)
+* [TypeScript](https://www.typescriptlang.org/)
+### Front End
+* [Ally Auction Springboot Server](https://github.com/syousif87/ally-auction-server)
+
+## TO RUN
+Port 4200 for ally-auction-ui, 9090 for ally-auction-server
+Make sure you have ally-auction-server running on the same machine with a local PostgreSQL instance running.  Instructions to set that up are in ally-auction-serer README.md file.
+
+$ ng serve
+
+Enter anything in login screen, this will be your "bidder name"
+
+Generate a couple of random auctions (with random reserve prices)
+
+Select a bid as shown in a list of UUID's
+
+Place bid as user
+
+Hit back, change user, out bid
+
+Hit 'Bid Log' button to see history of logs
+
+# Ally Auction Angular UI Demo
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.4.
 

@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { BidLogsComponent } from './bid-logs.component';
+import { AuctionService } from 'src/app/services/auction.service';
 
 describe('BidLogsComponent', () => {
   let component: BidLogsComponent;
@@ -8,7 +10,9 @@ describe('BidLogsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BidLogsComponent ]
+      declarations: [ BidLogsComponent ],
+      imports: [ HttpClientTestingModule ],
+      providers: [ AuctionService ]
     })
     .compileComponents();
   }));

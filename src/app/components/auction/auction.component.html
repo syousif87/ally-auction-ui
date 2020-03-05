@@ -1,7 +1,7 @@
 <div class="auction">
   <div>Welcome {{ bidderName }}</div>
   <button mat-raised-button color="primary" (click)="generateRandomAuctionItem()">Add Auction Item</button>
-  <button mat-raised-button color="primary" (click)="goToLog()">Bid Log</button>
+  <button mat-raised-button color="primary" class="log-btn" (click)="goToLog()">Bid Log</button>
 
   <div class="auction-view">
     <ul>
@@ -11,7 +11,11 @@
         </mat-card>
       </li>
     </ul>
-    <auction-details [auctionId]="selectedAuctionId" (error)="error($event)"></auction-details>
+    <auction-details 
+      class="auction-details"
+      [auctionId]="selectedAuctionId"
+      (error)="error($event)">
+    </auction-details>
   </div>
 </div>
 

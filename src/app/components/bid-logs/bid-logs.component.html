@@ -1,5 +1,9 @@
 <ul>
   <li *ngFor="let log of logs">
-    <mat-card>{{ getString(log) }}</mat-card>
+    <mat-card>
+      <div>Auction Item Id: {{ log.auctionItemId }}</div>
+      <div>Max Auto Bid: {{ log.maxAutoBidAmount }}</div>
+      <div>Bidder Name: {{ log.bidderName }}</div>
+    </mat-card>
   </li>
 </ul>

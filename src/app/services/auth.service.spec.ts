@@ -13,4 +13,13 @@ describe('AuthService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('bidder name should be empty', () => {
+    expect(service.bidderName).toBe(undefined);
+  });
+
+  it('bidder name should be set', () => {
+    service.bidderName = 'dev';
+    expect(service.bidderName).toBe('dev');
+  });
 });

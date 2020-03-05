@@ -61,7 +61,10 @@ export class AuctionDetailsComponent implements OnInit, OnChanges {
       errResp && errResp.error ? alert(errResp.error.message) : alert('Error processing bid.');
       this.error.next(true);
       this.bidPrice = 0;
-      this.auctionService.getAuction(this.auctionId).subscribe( resp => this.auction = resp);
+      this.auctionService.getAuction(this.auctionId).subscribe( resp => { 
+        this.auction = resp;
+        this.isCurrentBidder = this.auction && (this.auction.bidderName === this.authService.bidderName);
+      });
     });
   }
 }

@@ -1,0 +1,25 @@
+<mat-card *ngIf="auctionId" class="auction-details">
+  <div>
+    Bidder Name: {{ auction.bidderName }}
+  </div>
+
+  <div>
+    Current Bid: {{ auction.currentBid }}
+  </div>
+
+  <div>
+    Reserve Price: {{ auction.reservePrice }}
+  </div>
+
+  <div *ngIf="isCurrentBidder">You are the current highest bidder</div>
+  <div *ngIf="!isCurrentBidder">
+    <mat-form-field>
+    <mat-label>Max AutoBid Amount</mat-label>
+      <input matInput
+        name="bidPrice"
+        [(ngModel)]="bidPrice"
+        required>
+    </mat-form-field>
+    <button [disabled]="bidPrice === 0" mat-raised-button color="primary" (click)="bid()">Bid</button>
+  </div>
+</mat-card>

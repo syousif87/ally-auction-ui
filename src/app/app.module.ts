@@ -11,12 +11,15 @@ import { MaterialModule } from './material.module';
 import { LoginComponent } from './components/login/login.component';
 import { AuctionComponent } from './components/auction/auction.component';
 import { AuthService } from './services/auth.service';
+import { AuctionDetailsComponent } from './components/auction/auction-details/auction-details.component';
+import { AuctionDataService } from './services/auction-data.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    AuctionComponent
+    AuctionComponent,
+    AuctionDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ import { AuthService } from './services/auth.service';
   ],
   providers: [
     AuctionService,
-    AuthService
+    AuthService,
+    AuctionDataService
   ],
   bootstrap: [
     AppComponent

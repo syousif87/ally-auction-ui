@@ -2,22 +2,23 @@ import { ItemModel } from './item.model';
 
 export class AuctionItemModel {
   public auctionItemId: string;
-  public currentBid: string;
-  public reservePrice: string;
+  public currentBid: number;
+  public reservePrice: number;
   public bidderName: string;
   public item: ItemModel;
 
-  constructor(json: Object) {
-    var keys = Array.from(Object.keys(json));
+  constructor(json: Object = undefined) {
+    if (json) {
+      var keys = Array.from(Object.keys(json));
 
-    keys.forEach(key => {
-      this.setProperty(key, json[key]);
-      if (key !== 'item') {
-        this[key] === json[key];
-      } else {
-        this.item = new ItemModel(json[key]);
-      }
-    });
+      keys.forEach(key => {
+        if (key !== 'item') {
+          this.setProperty(key, json[key]);
+        } else {
+          this.item = new ItemModel(json[key]);
+        }
+      });
+    }
   }
 
   private setProperty(key, value) {

@@ -1,13 +1,17 @@
-<div>Welcome {{ bidderName }}</div>
+<div class="auction">
+  <div>Welcome {{ bidderName }}</div>
+  <button mat-raised-button color="primary" (click)="generateRandomAuctionItem()">Add Auction Item</button>
 
-<div class="auction-view">
-  <ul>
-    <li *ngFor="let auction of auctions" (click)="auctionClicked(auction)">
-      {{ auction.auctionItemId }} {{ selectedAuction && selectedAuction.auctionItemId === auction.auctionItemId ? '*' : ''}}
-    </li>
-  </ul>
-  <div *ngIf="selectedAuction">
-    {{ selectedAuction.auctionItemId }}
+  <div class="auction-view">
+    <ul>
+      <li *ngFor="let auction of auctions" (click)="auctionClicked(auction)">
+        <mat-card [ngClass]="{ selected: selectedAuctionId === auction.auctionItemId }">
+          {{ auction.auctionItemId }}
+        </mat-card>
+      </li>
+    </ul>
+    <auction-details [auctionId]="selectedAuctionId" (error)="error($event)"></auction-details>
   </div>
 </div>
+
 
